@@ -433,3 +433,329 @@ const countdownInterval =
         updateCountdown,
         1000
     );
+
+    /* =========================================================
+   SWIPER — NUESTROS RECUERDOS
+========================================================= */
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const memoryTrack =
+    document.getElementById("memoryTrack");
+
+const memoryPrev =
+    document.getElementById("memoryPrev");
+
+const memoryNext =
+    document.getElementById("memoryNext");
+
+const memoryCurrent =
+    document.getElementById("memoryCurrent");
+
+const memoryTotal =
+    document.getElementById("memoryTotal");
+
+const memoryDots =
+    document.querySelectorAll(".memory-dot");
+
+const memorySlides =
+    document.querySelectorAll(".memory-slide");
+
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
+let currentMemory =
+    0;
+
+const totalMemories =
+    memorySlides.length;
+
+
+/* =========================================================
+   ACTUALIZAR CONTADOR
+========================================================= */
+
+memoryTotal.textContent =
+    String(totalMemories).padStart(2, "0");
+
+
+/* =========================================================
+   MOSTRAR FOTOGRAFÍA
+========================================================= */
+
+function showMemory(index) {
+
+    /*
+        Evitamos salirnos de los límites.
+    */
+
+    if (index < 0) {
+
+        index =
+            totalMemories - 1;
+
+    }
+
+
+    if (index >= totalMemories) {
+
+        index = 0;
+
+    }
+
+
+    currentMemory =
+        index;
+
+
+    /*
+        Movemos el track.
+    */
+
+    memoryTrack.style.transform =
+        `translateX(-${currentMemory * 100}%)`;
+
+
+    /*
+        Actualizamos el contador.
+    */
+
+    memoryCurrent.textContent =
+        String(currentMemory + 1).padStart(2, "0");
+
+
+    /*
+        Actualizamos los puntos.
+    */
+
+    memoryDots.forEach(
+        (dot, dotIndex) => {
+
+            dot.classList.toggle(
+                "active",
+                dotIndex === currentMemory
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BOTÓN ANTERIOR
+========================================================= */
+
+memoryPrev.addEventListener(
+    "click",
+    () => {
+
+        showMemory(
+            currentMemory - 1
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BOTÓN SIGUIENTE
+========================================================= */
+
+memoryNext.addEventListener(
+    "click",
+    () => {
+
+        showMemory(
+            currentMemory + 1
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PUNTOS
+========================================================= */
+
+memoryDots.forEach(
+    (dot) => {
+
+        dot.addEventListener(
+            "click",
+            () => {
+
+                const slideIndex =
+                    Number(
+                        dot.dataset.slide
+                    );
+
+                showMemory(
+                    slideIndex
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SWIPE TÁCTIL
+========================================================= */
+
+let memoryTouchStartX = 0;
+
+let memoryTouchEndX = 0;
+
+
+/* ---------------------------------------------------------
+   INICIO DEL TOUCH
+--------------------------------------------------------- */
+
+memoryTrack.addEventListener(
+    "touchstart",
+    (event) => {
+
+        memoryTouchStartX =
+            event.touches[0].clientX;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* ---------------------------------------------------------
+   FINAL DEL TOUCH
+--------------------------------------------------------- */
+
+memoryTrack.addEventListener(
+    "touchend",
+    (event) => {
+
+        memoryTouchEndX =
+            event.changedTouches[0].clientX;
+
+
+        handleMemorySwipe();
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* =========================================================
+   DETECTAR DIRECCIÓN DEL SWIPE
+========================================================= */
+
+function handleMemorySwipe() {
+
+    const swipeDistance =
+        memoryTouchStartX -
+        memoryTouchEndX;
+
+
+    /*
+        50px evita cambios accidentales
+        por pequeños movimientos.
+    */
+
+    if (
+        Math.abs(swipeDistance) < 50
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+        Dedo hacia la izquierda
+        = siguiente fotografía.
+    */
+
+    if (swipeDistance > 0) {
+
+        showMemory(
+            currentMemory + 1
+        );
+
+    }
+
+
+    /*
+        Dedo hacia la derecha
+        = fotografía anterior.
+    */
+
+    else {
+
+        showMemory(
+            currentMemory - 1
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIALIZAR
+========================================================= */
+
+showMemory(0);
+
+/* =========================================================
+   ANIMACIÓN DEL ITINERARIO
+========================================================= */
+
+const itineraryItems =
+    document.querySelectorAll(
+        ".itinerary-item"
+    );
+
+
+const itineraryObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+
+itineraryItems.forEach(
+    (item) => {
+
+        itineraryObserver.observe(item);
+
+    }
+);

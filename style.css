@@ -103,7 +103,7 @@ body {
             rgba(40, 25, 20, .18),
             rgba(40, 25, 20, .32)
         ),
-        url("hero.jpeg");
+        url("hero2.jpeg");
 
     background-size: cover;
 
@@ -1559,3 +1559,951 @@ body {
     }
 
 }
+/* =========================================================
+   NUESTROS RECUERDOS
+========================================================= */
+
+.memories-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 130px;
+
+}
+
+
+.memories-inner {
+
+    width:
+        min(100%, 1000px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+/* ---------------------------------------------------------
+   ENCABEZADO
+--------------------------------------------------------- */
+
+.memories-inner .eyebrow {
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.memories-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.memories-description {
+
+    max-width:
+        600px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   SLIDER
+========================================================= */
+
+.memories-slider {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        900px;
+
+    margin:
+        65px auto 0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+}
+
+
+/* ---------------------------------------------------------
+   VENTANA
+--------------------------------------------------------- */
+
+.memory-viewport {
+
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        2px;
+
+    touch-action:
+        pan-y;
+
+}
+
+
+/* ---------------------------------------------------------
+   TRACK
+--------------------------------------------------------- */
+
+.memory-track {
+
+    display:
+        flex;
+
+    width:
+        100%;
+
+    transition:
+        transform .7s
+        cubic-bezier(
+            .65,
+            0,
+            .35,
+            1
+        );
+
+    will-change:
+        transform;
+
+}
+
+
+/* ---------------------------------------------------------
+   CADA SLIDE
+--------------------------------------------------------- */
+
+.memory-slide {
+
+    flex:
+        0 0 100%;
+
+    width:
+        100%;
+
+}
+
+
+/* ---------------------------------------------------------
+   FOTOGRAFÍA
+--------------------------------------------------------- */
+
+.memory-photo {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    aspect-ratio:
+        4 / 5;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--crema-almendra);
+
+}
+
+
+.memory-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+}
+
+
+/* =========================================================
+   FLECHAS
+========================================================= */
+
+.memory-arrow {
+
+    flex:
+        0 0 auto;
+
+    width:
+        45px;
+
+    height:
+        45px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        rgba(102, 88, 79, .25);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255, 253, 249, .75);
+
+    color:
+        var(--texto);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        1.1rem;
+
+    cursor:
+        pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+
+}
+
+
+.memory-arrow:hover {
+
+    background:
+        var(--texto);
+
+    color:
+        var(--blanco);
+
+    transform:
+        scale(1.05);
+
+}
+
+
+.memory-arrow:active {
+
+    transform:
+        scale(.94);
+
+}
+
+
+/* =========================================================
+   CONTADOR
+========================================================= */
+
+.memory-counter {
+
+    margin:
+        22px auto 0;
+
+    color:
+        var(--texto);
+
+    font-size:
+        .8rem;
+
+    letter-spacing:
+        .18em;
+
+}
+
+
+.memory-divider {
+
+    margin:
+        0 5px;
+
+    color:
+        var(--texto-suave);
+
+}
+
+
+/* =========================================================
+   PUNTOS
+========================================================= */
+
+.memory-dots {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        9px;
+
+    margin-top:
+        20px;
+
+}
+
+
+.memory-dot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(102, 88, 79, .25);
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+
+}
+
+
+.memory-dot.active {
+
+    background:
+        var(--trigo);
+
+    transform:
+        scale(1.35);
+
+}
+
+
+.memory-dot:hover {
+
+    background:
+        var(--trigo);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .memories-section {
+
+        padding:
+            90px 20px 100px;
+
+    }
+
+
+    .memories-slider {
+
+        gap:
+            12px;
+
+    }
+
+
+    .memory-arrow {
+
+        width:
+            40px;
+
+        height:
+            40px;
+
+        font-size:
+            1rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .memories-section {
+
+        padding:
+            80px 15px 90px;
+
+    }
+
+
+    .memories-description {
+
+        font-size:
+            .95rem;
+
+        line-height:
+            1.8;
+
+    }
+
+
+    .memories-slider {
+
+        margin-top:
+            45px;
+
+        gap:
+            7px;
+
+    }
+
+
+    .memory-arrow {
+
+        width:
+            34px;
+
+        height:
+            34px;
+
+        font-size:
+            .9rem;
+
+    }
+
+
+    .memory-photo {
+
+        aspect-ratio:
+            4 / 5;
+
+    }
+
+
+    .memory-counter {
+
+        margin-top:
+            18px;
+
+        font-size:
+            .7rem;
+
+    }
+
+}
+
+
+/* =========================================================
+   ITINERARIO
+========================================================= */
+
+.itinerary-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 140px;
+
+    background:
+        rgba(247, 237, 226, .55);
+
+}
+
+
+.itinerary-inner {
+
+    width:
+        min(100%, 850px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.itinerary-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.itinerary-intro {
+
+    max-width:
+        600px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   LÍNEA CENTRAL
+========================================================= */
+
+.itinerary-timeline {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        650px;
+
+    margin:
+        90px auto 0;
+
+    padding:
+        20px 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   LÍNEA
+--------------------------------------------------------- */
+
+.itinerary-timeline::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    left:
+        50%;
+
+    width:
+        1px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        var(--trigo);
+
+    opacity:
+        .65;
+
+}
+
+
+/* =========================================================
+   CADA MOMENTO
+========================================================= */
+
+.itinerary-item {
+
+    position:
+        relative;
+
+    width:
+        50%;
+
+    padding:
+        0 45px 90px;
+
+    text-align:
+        right;
+
+}
+
+
+.itinerary-item:nth-child(even) {
+
+    margin-left:
+        50%;
+
+    text-align:
+        left;
+
+}
+
+
+/* =========================================================
+   PUNTO CENTRAL
+========================================================= */
+
+.itinerary-dot {
+
+    position:
+        absolute;
+
+    top:
+        5px;
+
+    right:
+        -6px;
+
+    width:
+        11px;
+
+    height:
+        11px;
+
+    border:
+        2px solid
+        var(--crema-almendra);
+
+    border-radius:
+        50%;
+
+    background:
+        var(--trigo);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(212, 178, 150, .15);
+
+}
+
+
+.itinerary-item:nth-child(even) .itinerary-dot {
+
+    left:
+        -6px;
+
+    right:
+        auto;
+
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.itinerary-content {
+
+    opacity:
+        1;
+
+}
+
+
+.itinerary-time {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .75rem;
+
+    letter-spacing:
+        .2em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.itinerary-content h3 {
+
+    margin:
+        0;
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            1.5rem,
+            4vw,
+            2rem
+        );
+
+    font-weight:
+        normal;
+
+}
+
+
+.itinerary-content p {
+
+    margin-top:
+        12px;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .95rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   ÚLTIMO ELEMENTO
+========================================================= */
+
+.itinerary-item:last-child {
+
+    padding-bottom:
+        20px;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .itinerary-section {
+
+        padding:
+            90px 20px 110px;
+
+    }
+
+
+    .itinerary-timeline {
+
+        margin-top:
+            65px;
+
+    }
+
+
+    /*
+        En celular mantenemos
+        la línea ligeramente hacia
+        la izquierda para que el
+        contenido tenga más espacio.
+    */
+
+    .itinerary-timeline::before {
+
+        left:
+            18px;
+
+        transform:
+            none;
+
+    }
+
+
+    .itinerary-item,
+    .itinerary-item:nth-child(even) {
+
+        width:
+            100%;
+
+        margin-left:
+            0;
+
+        padding:
+            0 0 65px 55px;
+
+        text-align:
+            left;
+
+    }
+
+
+    .itinerary-dot,
+    .itinerary-item:nth-child(even) .itinerary-dot {
+
+        left:
+            12px;
+
+        right:
+            auto;
+
+    }
+
+
+    .itinerary-content h3 {
+
+        font-size:
+            1.5rem;
+
+    }
+
+
+    .itinerary-content p {
+
+        font-size:
+            .9rem;
+
+    }
+
+}
+
+/* =========================================================
+   ANIMACIÓN DEL ITINERARIO
+========================================================= */
+
+.itinerary-content {
+
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+
+.itinerary-item.visible .itinerary-content {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* El punto también aparece suavemente */
+
+.itinerary-dot {
+
+    opacity: 0;
+
+    transform:
+        scale(.5);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+
+}
+
+
+.itinerary-item.visible .itinerary-dot {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+}
+
