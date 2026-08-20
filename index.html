@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#F7EDE2"
+    >
+
+    <title>
+        Denise & Miguel | Invitación
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         INVITACIÓN
+         
+         La invitación existe desde el principio.
+         El sobre solamente está encima de ella.
+    ====================================================== -->
+
+    <main id="invitation">
+
+
+       <!-- =================================================
+     HERO
+================================================== -->
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-small">
+            Tenemos el honor de invitarte
+        </p>
+
+        <div class="hero-line"></div>
+
+        <h1>
+            Denise
+            <span>&amp;</span>
+            Miguel
+        </h1>
+
+        <p class="hero-date">
+            21 · 11 · 2026
+        </p>
+
+        <p class="hero-location">
+            Una fecha para celebrar el amor
+        </p>
+
+        <div class="scroll-indicator">
+
+            <span>
+                Desliza para descubrir
+            </span>
+
+            <div class="scroll-arrow">
+                ↓
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- =================================================
+             EL RESTO DE LA INVITACIÓN
+             
+             Lo iremos construyendo paso a paso.
+        ================================================== -->
+
+        <section class="invitation-body">
+
+
+            <div class="section-inner">
+
+
+                <p class="eyebrow">
+                    Nuestra historia
+                </p>
+
+
+                <h2>
+                    El comienzo de nuestra historia
+                </h2>
+
+
+                <p class="description">
+
+                    Después de tantos momentos compartidos,
+                    hoy queremos celebrar el comienzo de
+                    una nueva etapa.
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SOBRE / PANTALLA DE APERTURA
+
+         Está encima de toda la invitación.
+    ====================================================== -->
+
+    <section
+        id="envelope"
+        class="envelope-screen"
+        aria-label="Abrir invitación"
+    >
+
+
+        <!-- =================================================
+             FONDO
+        ================================================== -->
+
+        <div class="envelope-background"></div>
+
+
+
+        <!-- =================================================
+             PANEL IZQUIERDO
+        ================================================== -->
+
+        <div
+            class="envelope-panel panel-left"
+            aria-hidden="true"
+        >
+
+            <div class="paper-highlight"></div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PANEL DERECHO
+        ================================================== -->
+
+        <div
+            class="envelope-panel panel-right"
+            aria-hidden="true"
+        >
+
+            <div class="paper-highlight"></div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PLIEGUE CENTRAL
+        ================================================== -->
+
+        <div
+            class="center-fold"
+            aria-hidden="true"
+        ></div>
+
+
+
+        <!-- =================================================
+             SELLO DE CERA
+             
+             IMPORTANTE:
+             Aquí NO dibujaremos el sello con CSS.
+             
+             Cuando tengas la fotografía:
+             
+             sello.png
+             
+             simplemente se coloca en esta carpeta.
+        ================================================== -->
+
+        <button
+            id="seal"
+            class="seal"
+            type="button"
+            aria-label="Abrir invitación"
+        >
+
+            <img
+                src="sello.png"
+                alt="Sello de cera"
+                class="seal-image"
+            >
+
+        </button>
+
+
+
+        <!-- =================================================
+             INSTRUCCIÓN
+        ================================================== -->
+
+        <div class="envelope-instruction">
+
+            <span>
+                Toca el sello
+            </span>
+
+            <small>
+                para abrir la invitación
+            </small>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CERRAR
+             
+             Por ahora lo conservamos porque pertenece
+             al funcionamiento del ejemplo.
+        ================================================== -->
+
+        <button
+            id="closeEnvelope"
+            class="close-envelope"
+            type="button"
+            aria-label="Cerrar invitación"
+        >
+
+            ×
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
