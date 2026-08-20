@@ -269,3 +269,167 @@ if (window.visualViewport) {
     );
 
 }
+
+
+/* =========================================================
+   CUENTA REGRESIVA
+   DENISE & MIGUEL
+========================================================= */
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const countdown =
+    document.getElementById("countdown");
+
+const countdownFinished =
+    document.getElementById("countdownFinished");
+
+const greatDaySection =
+    document.querySelector(".great-day-section");
+
+const daysElement =
+    document.getElementById("days");
+
+const hoursElement =
+    document.getElementById("hours");
+
+const minutesElement =
+    document.getElementById("minutes");
+
+const secondsElement =
+    document.getElementById("seconds");
+
+
+/* =========================================================
+   FECHA DEL GRAN DÍA
+========================================================= */
+
+/*
+    21 de noviembre de 2026
+    00:00:00
+
+    La hora se interpreta en la zona horaria
+    del dispositivo donde se abre la invitación.
+*/
+
+const weddingDate =
+    new Date(
+        2026,
+        10,
+        21,
+        0,
+        0,
+        0
+    );
+
+
+/* =========================================================
+   ACTUALIZAR CUENTA REGRESIVA
+========================================================= */
+
+function updateCountdown() {
+
+    const now =
+        new Date();
+
+    const difference =
+        weddingDate.getTime()
+        -
+        now.getTime();
+
+
+    /*
+        Si la fecha ya llegó,
+        mostramos el mensaje final.
+    */
+
+    if (difference <= 0) {
+
+        greatDaySection.classList.add(
+            "is-finished"
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       CÁLCULO DEL TIEMPO
+    ===================================================== */
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60)
+            ) /
+            1000
+        );
+
+
+    /* =====================================================
+       MOSTRAR VALORES
+    ===================================================== */
+
+    daysElement.textContent =
+        String(days).padStart(2, "0");
+
+    hoursElement.textContent =
+        String(hours).padStart(2, "0");
+
+    minutesElement.textContent =
+        String(minutes).padStart(2, "0");
+
+    secondsElement.textContent =
+        String(seconds).padStart(2, "0");
+
+}
+
+
+/* =========================================================
+   EJECUCIÓN INICIAL
+========================================================= */
+
+updateCountdown();
+
+
+/* =========================================================
+   ACTUALIZAR CADA SEGUNDO
+========================================================= */
+
+const countdownInterval =
+    setInterval(
+        updateCountdown,
+        1000
+    );
