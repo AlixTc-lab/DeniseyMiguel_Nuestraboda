@@ -762,6 +762,68 @@ itineraryItems.forEach(
 
 
 
+/* =========================================================
+   INVITADOS DE PRUEBA
+========================================================= */
+
+const guests = {
+
+    "001": {
+        name: "Juan Pérez",
+        tickets: 3
+    },
+
+    "002": {
+        name: "María López",
+        tickets: 2
+    },
+
+    "003": {
+        name: "Carlos Hernández",
+        tickets: 4
+    }
+
+};
+
+
+/* =========================================================
+   IDENTIFICAR INVITADO POR URL
+========================================================= */
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+const guestId = params.get("id");
+
+const guestNameElement =
+    document.getElementById("guestName");
+
+const guestTicketsElement =
+    document.getElementById("guestTickets");
+
+
+/* =========================================================
+   MOSTRAR DATOS DEL INVITADO
+========================================================= */
+
+if (guestId && guests[guestId]) {
+
+    const guest = guests[guestId];
+
+    guestNameElement.textContent =
+        guest.name;
+
+    guestTicketsElement.textContent =
+        guest.tickets +
+        (
+            guest.tickets === 1
+                ? " pase"
+                : " pases"
+        );
+
+}
+
 
 /* =========================================================
    CONFIRMACIÓN DE ASISTENCIA
@@ -822,15 +884,22 @@ attendingNo.addEventListener("click", () => {
 
 
 /* =========================================================
-   CONFIRMAR
+   URL DE GOOGLE APPS SCRIPT
 ========================================================= */
 
-confirmAttendance.addEventListener("click", () => {
+const URL_SCRIPT =
+    "https://script.google.com/macros/s/AKfycbxo_N47_9kCwh7N4nmu994cz4KKnYkPQijrMPY9S0qP25I2zEcME-Ju7TxozZT7wNRH/exec";
 
-    /*
-        Verificamos que el invitado
-        haya elegido una opción.
-    */
+
+/* =========================================================
+   CONFIRMAR ASISTENCIA
+========================================================= */
+
+confirmAttendance.addEventListener("click", async () => {
+
+    /* =====================================================
+       COMPROBAR QUE HAYA ELEGIDO UNA OPCIÓN
+    ===================================================== */
 
     if (attendanceStatus === "") {
 
@@ -838,91 +907,129 @@ confirmAttendance.addEventListener("click", () => {
             "Por favor, selecciona una opción.";
 
         return;
+
     }
 
 
-    /*
-        Por ahora solamente mostramos
-        un mensaje de prueba.
+    /* =====================================================
+       COMPROBAR QUE EXISTA EL ID
+    ===================================================== */
 
-        Más adelante aquí conectaremos
-        Google Apps Script.
-    */
-
-    if (attendanceStatus === "Sí") {
+    if (!guestId) {
 
         rsvpResponse.textContent =
-            "¡Gracias por confirmar tu asistencia! Nos encantará compartir este día contigo.";
+            "No pudimos identificar tu invitación.";
 
-    } else {
+        return;
+
+    }
+
+
+    /* =====================================================
+       OBTENER MENSAJE
+    ===================================================== */
+
+    const messageElement =
+        document.getElementById("guestMessage");
+
+    const message =
+        messageElement
+            ? messageElement.value.trim()
+            : "";
+
+
+    /* =====================================================
+       DESACTIVAR BOTÓN MIENTRAS SE ENVÍA
+    ===================================================== */
+
+    confirmAttendance.disabled = true;
+
+    confirmAttendance.textContent =
+        "Enviando...";
+
+
+    /* =====================================================
+       ENVIAR A GOOGLE APPS SCRIPT
+    ===================================================== */
+
+    try {
+
+        const response =
+            await fetch(
+                URL_SCRIPT,
+                {
+                    method: "POST",
+
+                    body: JSON.stringify({
+
+                        id: guestId,
+
+                        attendance:
+                            attendanceStatus,
+
+                        message:
+                            message
+
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        /* =================================================
+           RESPUESTA EXITOSA
+        ================================================= */
+
+        if (result.success) {
+
+            if (attendanceStatus === "Sí") {
+
+                rsvpResponse.textContent =
+                    "¡Gracias por confirmar tu asistencia! Nos encantará compartir este día contigo.";
+
+            } else {
+
+                rsvpResponse.textContent =
+                    "Gracias por avisarnos. Te agradecemos mucho tu cariño y buenos deseos.";
+
+            }
+
+
+            confirmAttendance.textContent =
+                "Confirmación enviada";
+
+
+        } else {
+
+            rsvpResponse.textContent =
+                result.message ||
+                "No pudimos registrar tu respuesta.";
+
+            confirmAttendance.disabled =
+                false;
+
+            confirmAttendance.textContent =
+                "Confirmar asistencia";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
 
         rsvpResponse.textContent =
-            "Gracias por avisarnos. Te agradecemos mucho tu cariño y buenos deseos.";
+            "No pudimos enviar tu confirmación. Inténtalo nuevamente.";
+
+        confirmAttendance.disabled =
+            false;
+
+        confirmAttendance.textContent =
+            "Confirmar asistencia";
 
     }
 
 });
-
-
-
-
-/* =========================================================
-   INVITADOS DE PRUEBA
-========================================================= */
-
-const guests = {
-
-    "001": {
-        name: "Juan Pérez",
-        tickets: 3
-    },
-
-    "002": {
-        name: "María López",
-        tickets: 2
-    },
-
-    "003": {
-        name: "Carlos Hernández",
-        tickets: 4
-    }
-
-};
-
-/* =========================================================
-   IDENTIFICAR INVITADO POR URL
-========================================================= */
-
-const params = new URLSearchParams(
-    window.location.search
-);
-
-const guestId = params.get("id");
-
-const guestNameElement =
-    document.getElementById("guestName");
-
-const guestTicketsElement =
-    document.getElementById("guestTickets");
-
-
-/* =========================================================
-   MOSTRAR DATOS DEL INVITADO
-========================================================= */
-
-if (guestId && guests[guestId]) {
-
-    const guest = guests[guestId];
-
-    guestNameElement.textContent =
-        guest.name;
-
-    guestTicketsElement.textContent =
-        guest.tickets +
-        (
-            guest.tickets === 1
-                ? " pase"
-                : " pases"
-        );
-
-}
