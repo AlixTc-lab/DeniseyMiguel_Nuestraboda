@@ -759,3 +759,170 @@ itineraryItems.forEach(
 
     }
 );
+
+
+
+
+/* =========================================================
+   CONFIRMACIÓN DE ASISTENCIA
+========================================================= */
+
+const attendingYes =
+    document.getElementById("attendingYes");
+
+const attendingNo =
+    document.getElementById("attendingNo");
+
+const confirmAttendance =
+    document.getElementById("confirmAttendance");
+
+const rsvpResponse =
+    document.getElementById("rsvpResponse");
+
+
+/* =========================================================
+   OPCIÓN SELECCIONADA
+========================================================= */
+
+let attendanceStatus = "";
+
+
+/* =========================================================
+   ASISTIRÉ
+========================================================= */
+
+attendingYes.addEventListener("click", () => {
+
+    attendanceStatus = "Sí";
+
+    attendingYes.classList.add("selected");
+
+    attendingNo.classList.remove("selected");
+
+    rsvpResponse.textContent = "";
+
+});
+
+
+/* =========================================================
+   NO PODRÉ ASISTIR
+========================================================= */
+
+attendingNo.addEventListener("click", () => {
+
+    attendanceStatus = "No";
+
+    attendingNo.classList.add("selected");
+
+    attendingYes.classList.remove("selected");
+
+    rsvpResponse.textContent = "";
+
+});
+
+
+/* =========================================================
+   CONFIRMAR
+========================================================= */
+
+confirmAttendance.addEventListener("click", () => {
+
+    /*
+        Verificamos que el invitado
+        haya elegido una opción.
+    */
+
+    if (attendanceStatus === "") {
+
+        rsvpResponse.textContent =
+            "Por favor, selecciona una opción.";
+
+        return;
+    }
+
+
+    /*
+        Por ahora solamente mostramos
+        un mensaje de prueba.
+
+        Más adelante aquí conectaremos
+        Google Apps Script.
+    */
+
+    if (attendanceStatus === "Sí") {
+
+        rsvpResponse.textContent =
+            "¡Gracias por confirmar tu asistencia! Nos encantará compartir este día contigo.";
+
+    } else {
+
+        rsvpResponse.textContent =
+            "Gracias por avisarnos. Te agradecemos mucho tu cariño y buenos deseos.";
+
+    }
+
+});
+
+
+
+
+/* =========================================================
+   INVITADOS DE PRUEBA
+========================================================= */
+
+const guests = {
+
+    "001": {
+        name: "Juan Pérez",
+        tickets: 3
+    },
+
+    "002": {
+        name: "María López",
+        tickets: 2
+    },
+
+    "003": {
+        name: "Carlos Hernández",
+        tickets: 4
+    }
+
+};
+
+/* =========================================================
+   IDENTIFICAR INVITADO POR URL
+========================================================= */
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+const guestId = params.get("id");
+
+const guestNameElement =
+    document.getElementById("guestName");
+
+const guestTicketsElement =
+    document.getElementById("guestTickets");
+
+
+/* =========================================================
+   MOSTRAR DATOS DEL INVITADO
+========================================================= */
+
+if (guestId && guests[guestId]) {
+
+    const guest = guests[guestId];
+
+    guestNameElement.textContent =
+        guest.name;
+
+    guestTicketsElement.textContent =
+        guest.tickets +
+        (
+            guest.tickets === 1
+                ? " pase"
+                : " pases"
+        );
+
+}
