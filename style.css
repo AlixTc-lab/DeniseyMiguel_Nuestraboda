@@ -2860,3 +2860,2091 @@ body {
 
 }
 
+/* =========================================================
+   LUGARES
+========================================================= */
+
+.places-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 140px;
+
+    background:
+        var(--crema-almendra);
+
+}
+
+
+.places-inner {
+
+    width:
+        min(100%, 1000px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.places-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.places-intro {
+
+    max-width:
+        620px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.places-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        35px;
+
+    max-width:
+        900px;
+
+    margin:
+        70px auto 0;
+
+}
+
+
+.place-card {
+
+    background:
+        var(--blanco);
+
+    box-shadow:
+        0 18px 45px
+        rgba(102, 88, 79, .08);
+
+    overflow:
+        hidden;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
+   FOTOGRAFÍA
+========================================================= */
+
+.place-photo {
+
+    width:
+        100%;
+
+    aspect-ratio:
+        4 / 5;
+
+    overflow:
+        hidden;
+
+    background:
+        #eadfd3;
+
+}
+
+
+.place-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform .8s ease;
+
+}
+
+
+.place-card:hover .place-photo img {
+
+    transform:
+        scale(1.03);
+
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.place-info {
+
+    padding:
+        32px 25px 35px;
+
+}
+
+
+.place-label {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .7rem;
+
+    letter-spacing:
+        .2em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.place-info h3 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            1.6rem,
+            4vw,
+            2.1rem
+        );
+
+    font-weight:
+        normal;
+
+}
+
+
+.place-address {
+
+    margin-top:
+        14px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        .9rem;
+
+    line-height:
+        1.6;
+
+}
+
+
+.place-description {
+
+    max-width:
+        430px;
+
+    margin:
+        15px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .9rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   BOTÓN
+========================================================= */
+
+.place-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-top:
+        25px;
+
+    padding:
+        11px 24px;
+
+    border:
+        1px solid
+        var(--trigo);
+
+    color:
+        var(--texto);
+
+    background:
+        transparent;
+
+    text-decoration:
+        none;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        .75rem;
+
+    letter-spacing:
+        .12em;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+.place-button:hover {
+
+    background:
+        var(--trigo);
+
+    color:
+        var(--blanco);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .places-section {
+
+        padding:
+            90px 20px 110px;
+
+    }
+
+
+    .places-grid {
+
+        gap:
+            25px;
+
+        margin-top:
+            55px;
+
+    }
+
+
+    .place-info {
+
+        padding:
+            27px 20px 30px;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .places-section {
+
+        padding:
+            80px 18px 100px;
+
+    }
+
+
+    .places-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            500px;
+
+        gap:
+            35px;
+
+    }
+
+
+    .places-intro {
+
+        font-size:
+            .95rem;
+
+    }
+
+
+    .place-photo {
+
+        aspect-ratio:
+            4 / 5;
+
+    }
+
+
+    .place-info h3 {
+
+        font-size:
+            1.7rem;
+
+    }
+
+
+    .place-description {
+
+        font-size:
+            .9rem;
+
+    }
+
+}
+
+/* =========================================================
+   HOSPEDAJE
+========================================================= */
+
+.lodging-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 140px;
+
+    background:
+        var(--blanco);
+
+}
+
+
+.lodging-inner {
+
+    width:
+        min(100%, 900px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.lodging-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.lodging-intro {
+
+    max-width:
+        620px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   TARJETA
+========================================================= */
+
+.lodging-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    max-width:
+        850px;
+
+    margin:
+        70px auto 0;
+
+    background:
+        var(--crema-almendra);
+
+    box-shadow:
+        0 20px 50px
+        rgba(102, 88, 79, .08);
+
+}
+
+
+.lodging-photo {
+
+    width:
+        100%;
+
+    min-height:
+        500px;
+
+    overflow:
+        hidden;
+
+}
+
+
+.lodging-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+
+.lodging-info {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        50px 40px;
+
+}
+
+
+.lodging-label {
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .7rem;
+
+    letter-spacing:
+        .15em;
+
+    line-height:
+        1.6;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.lodging-info h3 {
+
+    margin-top:
+        15px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            1.6rem,
+            4vw,
+            2.2rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.2;
+
+}
+
+
+.lodging-description {
+
+    max-width:
+        350px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .95rem;
+
+    line-height:
+        1.9;
+
+}
+
+
+/* =========================================================
+   BOTÓN WHATSAPP
+========================================================= */
+
+.lodging-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-top:
+        30px;
+
+    padding:
+        13px 25px;
+
+    border:
+        1px solid
+        var(--trigo);
+
+    background:
+        transparent;
+
+    color:
+        var(--texto);
+
+    text-decoration:
+        none;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        .72rem;
+
+    letter-spacing:
+        .12em;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+.lodging-button:hover {
+
+    background:
+        var(--trigo);
+
+    color:
+        var(--blanco);
+
+}
+
+
+.lodging-note {
+
+    margin-top:
+        18px;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .72rem;
+
+    font-style:
+        italic;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .lodging-section {
+
+        padding:
+            90px 18px 110px;
+
+    }
+
+
+    .lodging-card {
+
+        grid-template-columns:
+            1fr;
+
+        margin-top:
+            55px;
+
+    }
+
+
+    .lodging-photo {
+
+        min-height:
+            auto;
+
+        aspect-ratio:
+            4 / 5;
+
+    }
+
+
+    .lodging-info {
+
+        padding:
+            40px 25px 45px;
+
+    }
+
+
+    .lodging-intro {
+
+        font-size:
+            .95rem;
+
+    }
+
+}
+/* =========================================================
+   CÓDIGO DE VESTIMENTA
+========================================================= */
+
+.dresscode-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 140px;
+
+    background:
+        var(--crema-almendra);
+
+}
+
+
+.dresscode-inner {
+
+    width:
+        min(100%, 800px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.dresscode-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.dresscode-intro {
+
+    max-width:
+        620px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   TARJETA
+========================================================= */
+
+.dresscode-card {
+
+    max-width:
+        500px;
+
+    margin:
+        65px auto 0;
+
+    padding:
+        55px 40px;
+
+    background:
+        var(--blanco);
+
+    border:
+        1px solid
+        rgba(212, 178, 150, .35);
+
+    box-shadow:
+        0 20px 50px
+        rgba(102, 88, 79, .07);
+
+}
+
+
+.dresscode-symbol {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    margin:
+        0 auto 25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        var(--trigo);
+
+    border-radius:
+        50%;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        1.1rem;
+
+}
+
+
+.dresscode-label {
+
+    display:
+        block;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .7rem;
+
+    letter-spacing:
+        .25em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.dresscode-card h3 {
+
+    margin-top:
+        12px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2rem,
+            6vw,
+            3rem
+        );
+
+    font-weight:
+        normal;
+
+}
+
+
+.dresscode-card p {
+
+    max-width:
+        400px;
+
+    margin:
+        20px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .95rem;
+
+    line-height:
+        1.9;
+
+}
+
+
+/* =========================================================
+   NOTA FINAL
+========================================================= */
+
+.dresscode-note {
+
+    margin-top:
+        40px;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .85rem;
+
+    font-style:
+        italic;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .dresscode-section {
+
+        padding:
+            90px 18px 110px;
+
+    }
+
+
+    .dresscode-intro {
+
+        font-size:
+            .95rem;
+
+    }
+
+
+    .dresscode-card {
+
+        margin-top:
+            50px;
+
+        padding:
+            45px 25px;
+
+    }
+
+
+    .dresscode-card p {
+
+        font-size:
+            .9rem;
+
+    }
+
+}
+/* =========================================================
+   COLORES A EVITAR
+========================================================= */
+
+.dresscode-avoid {
+
+    margin-top:
+        40px;
+
+    padding-top:
+        30px;
+
+    border-top:
+        1px solid
+        rgba(102, 88, 79, .12);
+
+}
+
+
+.dresscode-avoid-title {
+
+    display:
+        block;
+
+    margin-bottom:
+        22px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        .7rem;
+
+    letter-spacing:
+        .18em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.color-list {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        flex-start;
+
+    gap:
+        28px;
+
+}
+
+
+.color-item {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .72rem;
+
+}
+
+
+.color-circle {
+
+    display:
+        block;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(102, 88, 79, .18);
+
+}
+
+
+/* ROJO */
+
+.color-red {
+
+    background:
+        #a83232;
+
+}
+
+
+/* BLANCO */
+
+.color-white {
+
+    background:
+        #fffdf9;
+
+}
+
+
+/* BEIGE */
+
+.color-beige {
+
+    background:
+        #D4B296;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .color-list {
+
+        gap:
+            22px;
+
+    }
+
+
+    .color-circle {
+
+        width:
+            38px;
+
+        height:
+            38px;
+
+    }
+
+}
+
+/* =========================================================
+   EJEMPLO DE VESTIMENTA
+========================================================= */
+
+.dresscode-example {
+
+    max-width:
+        650px;
+
+    margin:
+        65px auto 0;
+
+}
+
+
+.dresscode-example-label {
+
+    margin-bottom:
+        20px;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .7rem;
+
+    letter-spacing:
+        .2em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.dresscode-example-image {
+
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        2px;
+
+}
+
+
+.dresscode-example-image img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+    object-fit:
+        cover;
+
+}
+
+
+/* =========================================================
+   MESA DE REGALOS
+========================================================= */
+
+.gifts-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 140px;
+
+    background:
+        var(--crema-almendra);
+
+}
+
+
+.gifts-inner {
+
+    width:
+        min(100%, 800px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.gifts-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.gifts-intro {
+
+    max-width:
+        620px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   OPCIÓN DE REGALO
+========================================================= */
+
+.gift-option {
+
+    width:
+        min(100%, 550px);
+
+    margin:
+        65px auto 0;
+
+    padding:
+        45px 35px;
+
+    background:
+        var(--blanco);
+
+    border:
+        1px solid
+        rgba(212, 178, 150, .35);
+
+    box-shadow:
+        0 20px 50px
+        rgba(102, 88, 79, .07);
+
+    text-align:
+        center;
+
+}
+
+
+.gift-label {
+
+    display:
+        block;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .7rem;
+
+    letter-spacing:
+        .2em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.gift-option h3 {
+
+    margin-top:
+        12px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            1.7rem,
+            5vw,
+            2.3rem
+        );
+
+    font-weight:
+        normal;
+
+}
+
+
+.gift-description {
+
+    max-width:
+        450px;
+
+    margin:
+        18px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .95rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   BOTÓN
+========================================================= */
+
+.gift-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-top:
+        28px;
+
+    padding:
+        13px 26px;
+
+    border:
+        1px solid
+        var(--trigo);
+
+    color:
+        var(--texto);
+
+    text-decoration:
+        none;
+
+    font-size:
+        .72rem;
+
+    letter-spacing:
+        .12em;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+.gift-button:hover {
+
+    background:
+        var(--trigo);
+
+    color:
+        var(--blanco);
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .gifts-section {
+
+        padding:
+            90px 18px 110px;
+
+    }
+
+
+    .gifts-intro {
+
+        font-size:
+            .95rem;
+
+    }
+
+}
+
+/* =========================================================
+   CELEBRACIÓN SOLO PARA ADULTOS
+========================================================= */
+
+.adults-section {
+
+    width: 100%;
+
+    padding:
+        110px 20px 120px;
+
+   
+
+}
+
+
+.adults-inner {
+
+    width:
+        min(100%, 700px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.adults-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.1rem,
+            6vw,
+            3.6rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.adults-intro {
+
+    max-width:
+        570px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.9;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .adults-section {
+
+        padding:
+            85px 18px 100px;
+
+    }
+
+
+    .adults-intro {
+
+        font-size:
+            .95rem;
+
+        line-height:
+            1.8;
+
+    }
+
+}
+
+/* =========================================================
+   CONFIRMACIÓN DE ASISTENCIA
+========================================================= */
+
+.rsvp-section {
+
+    width: 100%;
+
+    padding:
+        120px 20px 140px;
+
+    background:
+        var(--crema-almendra);
+
+}
+
+
+.rsvp-inner {
+
+    width:
+        min(100%, 800px);
+
+    margin:
+        0 auto;
+
+    text-align:
+        center;
+
+}
+
+
+.rsvp-inner h2 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    font-weight:
+        normal;
+
+    line-height:
+        1.15;
+
+}
+
+
+.rsvp-intro {
+
+    max-width:
+        620px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   TARJETA
+========================================================= */
+
+.rsvp-card {
+
+    width:
+        min(100%, 550px);
+
+    margin:
+        65px auto 0;
+
+    padding:
+        45px 35px;
+
+    background:
+        var(--blanco);
+
+    border:
+        1px solid
+        rgba(212, 178, 150, .35);
+
+    box-shadow:
+        0 20px 50px
+        rgba(102, 88, 79, .07);
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
+   INVITADO
+========================================================= */
+
+.rsvp-welcome {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--trigo);
+
+    font-size:
+        .75rem;
+
+    letter-spacing:
+        .2em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.rsvp-card h3 {
+
+    color:
+        var(--texto);
+
+    font-size:
+        clamp(
+            1.8rem,
+            6vw,
+            2.5rem
+        );
+
+    font-weight:
+        normal;
+
+}
+
+
+.rsvp-tickets-label {
+
+    margin-top:
+        25px;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .9rem;
+
+}
+
+
+.rsvp-tickets {
+
+    display:
+        block;
+
+    margin-top:
+        6px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        1.25rem;
+
+    font-weight:
+        normal;
+
+}
+
+
+/* =========================================================
+   ASISTENCIA
+========================================================= */
+
+.attendance {
+
+    margin-top:
+        40px;
+
+}
+
+
+.attendance-question {
+
+    color:
+        var(--texto);
+
+    font-size:
+        1rem;
+
+}
+
+
+.attendance-options {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        20px;
+
+}
+
+
+.attendance-button {
+
+    padding:
+        12px 20px;
+
+    border:
+        1px solid
+        var(--trigo);
+
+    background:
+        transparent;
+
+    color:
+        var(--texto);
+
+    font-family:
+        inherit;
+
+    font-size:
+        .75rem;
+
+    letter-spacing:
+        .08em;
+
+    cursor:
+        pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+
+}
+
+
+.attendance-button:hover {
+
+    background:
+        var(--trigo);
+
+    color:
+        var(--blanco);
+
+}
+
+
+/* BOTÓN SELECCIONADO */
+
+.attendance-button.selected {
+
+    background:
+        var(--trigo);
+
+    color:
+        var(--blanco);
+
+}
+
+
+/* =========================================================
+   MENSAJE
+========================================================= */
+
+.message-group {
+
+    margin-top:
+        30px;
+
+    text-align:
+        left;
+
+}
+
+
+.message-group label {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        .8rem;
+
+}
+
+
+.message-group label span {
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .75rem;
+
+}
+
+
+.message-group textarea {
+
+    width:
+        100%;
+
+    min-height:
+        100px;
+
+    padding:
+        13px;
+
+    resize:
+        vertical;
+
+    border:
+        1px solid
+        rgba(102, 88, 79, .2);
+
+    outline:
+        none;
+
+    background:
+        #fffefa;
+
+    color:
+        var(--texto);
+
+    font-family:
+        inherit;
+
+    font-size:
+        .9rem;
+
+}
+
+
+.message-group textarea:focus {
+
+    border-color:
+        var(--trigo);
+
+}
+
+
+/* =========================================================
+   BOTÓN CONFIRMAR
+========================================================= */
+
+.rsvp-confirm-button {
+
+    margin-top:
+        30px;
+
+    padding:
+        14px 28px;
+
+    border:
+        none;
+
+    background:
+        var(--trigo);
+
+    color:
+        var(--blanco);
+
+    font-family:
+        inherit;
+
+    font-size:
+        .72rem;
+
+    letter-spacing:
+        .12em;
+
+    text-transform:
+        uppercase;
+
+    cursor:
+        pointer;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+
+}
+
+
+.rsvp-confirm-button:hover {
+
+    opacity:
+        .88;
+
+}
+
+
+.rsvp-confirm-button:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+/* =========================================================
+   RESPUESTA
+========================================================= */
+
+.rsvp-response {
+
+    margin-top:
+        20px;
+
+    color:
+        var(--texto-suave);
+
+    font-size:
+        .9rem;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .rsvp-section {
+
+        padding:
+            90px 18px 110px;
+
+    }
+
+
+    .rsvp-card {
+
+        padding:
+            38px 22px;
+
+    }
+
+
+    .attendance-options {
+
+        flex-direction:
+            column;
+
+        gap:
+            10px;
+
+    }
+
+
+    .attendance-button {
+
+        width:
+            100%;
+
+    }
+
+
+    .rsvp-intro {
+
+        font-size:
+            .95rem;
+
+    }
+
+}
