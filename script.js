@@ -760,34 +760,16 @@ itineraryItems.forEach(
     }
 );
 
-
-
 /* =========================================================
-   INVITADOS DE PRUEBA
+   URL DE GOOGLE APPS SCRIPT
 ========================================================= */
 
-const guests = {
-
-    "001": {
-        name: "Juan Pérez",
-        tickets: 3
-    },
-
-    "002": {
-        name: "María López",
-        tickets: 2
-    },
-
-    "003": {
-        name: "Carlos Hernández",
-        tickets: 4
-    }
-
-};
+const URL_SCRIPT =
+    "https://script.google.com/macros/s/AKfycbxo_N47_9kCwh7N4nmu994cz4KKnYkPQijrMPY9S0qP25I2zEcME-Ju7TxozZT7wNRH/exec";
 
 
 /* =========================================================
-   IDENTIFICAR INVITADO POR URL
+   IDENTIFICAR INVITADO DESDE GOOGLE SHEETS
 ========================================================= */
 
 const params = new URLSearchParams(
@@ -804,25 +786,78 @@ const guestTicketsElement =
 
 
 /* =========================================================
-   MOSTRAR DATOS DEL INVITADO
+   CARGAR DATOS DEL INVITADO
 ========================================================= */
 
-if (guestId && guests[guestId]) {
+async function loadGuestData() {
 
-    const guest = guests[guestId];
+    if (!guestId) {
+        return;
+    }
 
-    guestNameElement.textContent =
-        guest.name;
+    try {
 
-    guestTicketsElement.textContent =
-        guest.tickets +
-        (
-            guest.tickets === 1
-                ? " pase"
-                : " pases"
+        const response =
+            await fetch(
+                `${URL_SCRIPT}?id=${encodeURIComponent(guestId)}`
+            );
+
+        const guest =
+            await response.json();
+
+
+        /* =================================================
+           INVITADO ENCONTRADO
+        ================================================== */
+
+        if (guest.success) {
+
+            guestNameElement.textContent =
+                guest.name;
+
+            guestTicketsElement.textContent =
+                guest.tickets +
+                (
+                    guest.tickets === 1
+                        ? " pase"
+                        : " pases"
+                );
+
+        }
+
+
+        /* =================================================
+           INVITADO NO ENCONTRADO
+        ================================================== */
+
+        else {
+
+            guestNameElement.textContent =
+                "Invitado";
+
+            guestTicketsElement.textContent =
+                "";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Error al cargar invitado:",
+            error
         );
 
+    }
+
 }
+
+
+/* =========================================================
+   EJECUTAR CARGA DEL INVITADO
+========================================================= */
+
+loadGuestData();
 
 
 /* =========================================================
@@ -884,129 +919,145 @@ attendingNo.addEventListener("click", () => {
 
 
 /* =========================================================
-   URL DE GOOGLE APPS SCRIPT
-========================================================= */
-
-const URL_SCRIPT =
-    "https://script.google.com/macros/s/AKfycbxo_N47_9kCwh7N4nmu994cz4KKnYkPQijrMPY9S0qP25I2zEcME-Ju7TxozZT7wNRH/exec";
-
-
-/* =========================================================
    CONFIRMAR ASISTENCIA
 ========================================================= */
 
-confirmAttendance.addEventListener("click", async () => {
+confirmAttendance.addEventListener(
+    "click",
+    async () => {
 
-    /* =====================================================
-       COMPROBAR QUE HAYA ELEGIDO UNA OPCIÓN
-    ===================================================== */
+        /* =============================================
+           COMPROBAR OPCIÓN
+        ============================================== */
 
-    if (attendanceStatus === "") {
+        if (attendanceStatus === "") {
 
-        rsvpResponse.textContent =
-            "Por favor, selecciona una opción.";
+            rsvpResponse.textContent =
+                "Por favor, selecciona una opción.";
 
-        return;
+            return;
 
-    }
-
-
-    /* =====================================================
-       COMPROBAR QUE EXISTA EL ID
-    ===================================================== */
-
-    if (!guestId) {
-
-        rsvpResponse.textContent =
-            "No pudimos identificar tu invitación.";
-
-        return;
-
-    }
+        }
 
 
-    /* =====================================================
-       OBTENER MENSAJE
-    ===================================================== */
+        /* =============================================
+           COMPROBAR ID
+        ============================================== */
 
-    const messageElement =
-        document.getElementById("guestMessage");
+        if (!guestId) {
 
-    const message =
-        messageElement
-            ? messageElement.value.trim()
-            : "";
+            rsvpResponse.textContent =
+                "No pudimos identificar tu invitación.";
 
+            return;
 
-    /* =====================================================
-       DESACTIVAR BOTÓN MIENTRAS SE ENVÍA
-    ===================================================== */
-
-    confirmAttendance.disabled = true;
-
-    confirmAttendance.textContent =
-        "Enviando...";
+        }
 
 
-    /* =====================================================
-       ENVIAR A GOOGLE APPS SCRIPT
-    ===================================================== */
+        /* =============================================
+           OBTENER MENSAJE
+        ============================================== */
 
-    try {
-
-        const response =
-            await fetch(
-                URL_SCRIPT,
-                {
-                    method: "POST",
-
-                    body: JSON.stringify({
-
-                        id: guestId,
-
-                        attendance:
-                            attendanceStatus,
-
-                        message:
-                            message
-
-                    })
-                }
+        const messageElement =
+            document.getElementById(
+                "guestMessage"
             );
 
+        const message =
+            messageElement
+                ? messageElement.value.trim()
+                : "";
 
-        const result =
-            await response.json();
+
+        /* =============================================
+           DESACTIVAR BOTÓN
+        ============================================== */
+
+        confirmAttendance.disabled =
+            true;
+
+        confirmAttendance.textContent =
+            "Enviando...";
 
 
-        /* =================================================
-           RESPUESTA EXITOSA
-        ================================================= */
+        /* =============================================
+           ENVIAR A GOOGLE APPS SCRIPT
+        ============================================== */
 
-        if (result.success) {
+        try {
 
-            if (attendanceStatus === "Sí") {
+            const response =
+                await fetch(
+                    URL_SCRIPT,
+                    {
+                        method: "POST",
 
-                rsvpResponse.textContent =
-                    "¡Gracias por confirmar tu asistencia! Nos encantará compartir este día contigo.";
+                        body: JSON.stringify({
+
+                            id:
+                                guestId,
+
+                            attendance:
+                                attendanceStatus,
+
+                            message:
+                                message
+
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            /* =========================================
+               RESPUESTA EXITOSA
+            ========================================== */
+
+            if (result.success) {
+
+                if (
+                    attendanceStatus === "Sí"
+                ) {
+
+                    rsvpResponse.textContent =
+                        "¡Gracias por confirmar tu asistencia! Nos encantará compartir este día contigo.";
+
+                } else {
+
+                    rsvpResponse.textContent =
+                        "Gracias por avisarnos. Te agradecemos mucho tu cariño y buenos deseos.";
+
+                }
+
+
+                confirmAttendance.textContent =
+                    "Confirmación enviada";
+
 
             } else {
 
                 rsvpResponse.textContent =
-                    "Gracias por avisarnos. Te agradecemos mucho tu cariño y buenos deseos.";
+                    result.message ||
+                    "No pudimos registrar tu respuesta.";
+
+                confirmAttendance.disabled =
+                    false;
+
+                confirmAttendance.textContent =
+                    "Confirmar asistencia";
 
             }
 
 
-            confirmAttendance.textContent =
-                "Confirmación enviada";
+        } catch (error) {
 
-
-        } else {
+            console.error(error);
 
             rsvpResponse.textContent =
-                result.message ||
-                "No pudimos registrar tu respuesta.";
+                "No pudimos enviar tu confirmación. Inténtalo nuevamente.";
 
             confirmAttendance.disabled =
                 false;
@@ -1016,20 +1067,5 @@ confirmAttendance.addEventListener("click", async () => {
 
         }
 
-
-    } catch (error) {
-
-        console.error(error);
-
-        rsvpResponse.textContent =
-            "No pudimos enviar tu confirmación. Inténtalo nuevamente.";
-
-        confirmAttendance.disabled =
-            false;
-
-        confirmAttendance.textContent =
-            "Confirmar asistencia";
-
     }
-
-});
+);
