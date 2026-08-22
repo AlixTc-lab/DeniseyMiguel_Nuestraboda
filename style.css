@@ -5469,3 +5469,29 @@ body {
         width: 15px;
     }
 }
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.video-section {
+    width: 100%;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.video-container {
+    width: min(100%, 700px);
+    margin: 40px auto 0;
+}
+
+.video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 40px rgba(60, 40, 25, .18);
+}
