@@ -1128,3 +1128,95 @@ confirmAttendance.addEventListener(
 
     }
 );
+
+/* =========================================================
+   BRILLOS ELEGANTES
+========================================================= */
+
+const sparklesContainer =
+    document.getElementById("sparkles");
+
+
+function createSparkle() {
+
+    const sparkle =
+        document.createElement("span");
+
+    sparkle.classList.add("sparkle");
+
+
+    /* =============================================
+       POSICIÓN
+    ============================================== */
+
+    sparkle.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* =============================================
+       TAMAÑO
+    ============================================== */
+
+    const size =
+        3 + Math.random() * 4;
+
+    sparkle.style.width =
+        size + "px";
+
+    sparkle.style.height =
+        size + "px";
+
+
+    /* =============================================
+       VELOCIDAD
+    ============================================== */
+
+    const duration =
+        4.5 + Math.random() * 5;
+
+    sparkle.style.animationDuration =
+        duration + "s";
+
+
+    /* =============================================
+       ALGUNOS SERÁN DESTELLOS
+    ============================================== */
+
+    if (Math.random() < 0.25) {
+
+        sparkle.classList.add("star");
+
+    }
+
+
+    /* =============================================
+       AGREGAR
+    ============================================== */
+
+    sparklesContainer.appendChild(
+        sparkle
+    );
+
+
+    /* =============================================
+       ELIMINAR
+    ============================================== */
+
+    setTimeout(() => {
+
+        sparkle.remove();
+
+    }, duration * 1000);
+
+}
+
+
+/* =========================================================
+   GENERAR BRILLOS
+========================================================= */
+
+setInterval(() => {
+
+    createSparkle();
+
+}, 400);
