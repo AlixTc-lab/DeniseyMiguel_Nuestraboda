@@ -31,6 +31,20 @@ const OPEN_TIME = 1600;
 
 function openEnvelope() {
 
+    backgroundMusic.play()
+    .then(() => {
+
+        musicButton.textContent = "🔊";
+
+    })
+    .catch((error) => {
+
+        console.log(
+            "No se pudo iniciar la música:",
+            error
+        );
+
+    });
     /*
         Evitamos que pueda activarse
         varias veces mientras se abre.
@@ -130,6 +144,51 @@ function closeEnvelopeAnimation() {
     }, OPEN_TIME);
 
 }
+
+
+/* =========================================================
+   MÚSICA DE FONDO
+========================================================= */
+
+const backgroundMusic =
+    document.getElementById("backgroundMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+/* =========================================================
+   BOTÓN DE MÚSICA
+========================================================= */
+
+musicButton.addEventListener("click", () => {
+
+    if (backgroundMusic.paused) {
+
+        backgroundMusic.play();
+
+        musicButton.textContent = "🔊";
+
+        musicButton.setAttribute(
+            "aria-label",
+            "Pausar música"
+        );
+
+    } else {
+
+        backgroundMusic.pause();
+
+        musicButton.textContent = "🔇";
+
+        musicButton.setAttribute(
+            "aria-label",
+            "Reproducir música"
+        );
+
+    }
+
+});
+
 
 
 /* =========================================================
