@@ -341,8 +341,8 @@ body {
 
 .eyebrow {
 
-    color:
-        var(--trigo);
+     color:
+        #423c37;
 
     font-size: .75rem;
 
@@ -1197,7 +1197,7 @@ body {
 .story-inner .eyebrow {
 
     color:
-        var(--trigo);
+        #423c37;
 
     margin-bottom:
         22px;
@@ -1284,6 +1284,8 @@ body {
 
     margin-bottom:
         22px;
+           color:
+        #423c37;
 
 }
 
@@ -2664,11 +2666,11 @@ body {
     margin-bottom:
         10px;
 
-    color:
-        var(--trigo);
+      color:
+        #423c37;
 
     font-size:
-        .75rem;
+        .78rem;
 
     letter-spacing:
         .2em;
