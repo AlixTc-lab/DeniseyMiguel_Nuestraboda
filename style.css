@@ -5518,3 +5518,20 @@ body {
         height: auto;
     }
 }
+
+
+
+.gift-image {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 600px) {
+    .gift-image {
+        max-width: 80px;
+    }
+}
