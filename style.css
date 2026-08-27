@@ -4567,6 +4567,78 @@ body {
 
 }
 
+/* =========================================================
+   NOMBRE DEL INVITADO
+========================================================= */
+
+.name-group {
+
+    margin-top:
+        25px;
+
+    text-align:
+        left;
+
+}
+
+
+.name-group label {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--texto);
+
+    font-size:
+        .8rem;
+
+}
+
+
+.name-group input {
+
+    width:
+        100%;
+
+    padding:
+        13px;
+
+    border:
+        1px solid
+        rgba(102, 88, 79, .2);
+
+    outline:
+        none;
+
+    background:
+        #fffefa;
+
+    color:
+        var(--texto);
+
+    font-family:
+        inherit;
+
+    font-size:
+        .9rem;
+
+    box-sizing:
+        border-box;
+
+}
+
+
+.name-group input:focus {
+
+    border-color:
+        var(--trigo);
+
+}
+
 
 /* =========================================================
    INVITADO
