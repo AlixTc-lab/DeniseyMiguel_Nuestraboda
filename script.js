@@ -818,7 +818,6 @@ itineraryItems.forEach(
 
     }
 );
-
 /* =========================================================
    URL DE GOOGLE APPS SCRIPT
 ========================================================= */
@@ -828,7 +827,7 @@ const URL_SCRIPT =
 
 
 /* =========================================================
-   IDENTIFICAR INVITADO DESDE GOOGLE SHEETS
+   IDENTIFICAR INVITACIÓN DESDE LA URL
 ========================================================= */
 
 const params = new URLSearchParams(
@@ -837,91 +836,16 @@ const params = new URLSearchParams(
 
 const guestId = params.get("id");
 
+
+/* =========================================================
+   ELEMENTOS DEL FORMULARIO
+========================================================= */
+
 const guestNameElement =
     document.getElementById("guestName");
 
 const guestTicketsElement =
     document.getElementById("guestTickets");
-
-
-/* =========================================================
-   CARGAR DATOS DEL INVITADO
-========================================================= */
-
-async function loadGuestData() {
-
-    if (!guestId) {
-        return;
-    }
-
-    try {
-
-        const response =
-            await fetch(
-                `${URL_SCRIPT}?id=${encodeURIComponent(guestId)}`
-            );
-
-        const guest =
-            await response.json();
-
-
-        /* =================================================
-           INVITADO ENCONTRADO
-        ================================================== */
-
-        if (guest.success) {
-
-            guestNameElement.textContent =
-                guest.name;
-
-            guestTicketsElement.textContent =
-                guest.tickets +
-                (
-                    guest.tickets === 1
-                        ? " pase"
-                        : " pases"
-                );
-
-        }
-
-
-        /* =================================================
-           INVITADO NO ENCONTRADO
-        ================================================== */
-
-        else {
-
-            guestNameElement.textContent =
-                "Invitado";
-
-            guestTicketsElement.textContent =
-                "";
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "Error al cargar invitado:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   EJECUTAR CARGA DEL INVITADO
-========================================================= */
-
-loadGuestData();
-
-
-/* =========================================================
-   CONFIRMACIÓN DE ASISTENCIA
-========================================================= */
 
 const attendingYes =
     document.getElementById("attendingYes");
@@ -937,7 +861,97 @@ const rsvpResponse =
 
 
 /* =========================================================
-   OPCIÓN SELECCIONADA
+   CARGAR DATOS DE LA INVITACIÓN
+========================================================= */
+
+async function loadGuestData() {
+
+    if (!guestId) {
+
+        rsvpResponse.textContent =
+            "No pudimos identificar tu invitación.";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${URL_SCRIPT}?id=${encodeURIComponent(guestId)}`
+            );
+
+
+        const guest =
+            await response.json();
+
+
+        /* =================================================
+           INVITACIÓN ENCONTRADA
+        ================================================== */
+
+        if (guest.success) {
+
+            const tickets =
+                Number(guest.tickets);
+
+
+            guestTicketsElement.textContent =
+                tickets +
+                (
+                    tickets === 1
+                        ? " pase"
+                        : " pases"
+                );
+
+        }
+
+
+        /* =================================================
+           INVITACIÓN NO ENCONTRADA
+        ================================================== */
+
+        else {
+
+            guestTicketsElement.textContent =
+                "";
+
+            rsvpResponse.textContent =
+                guest.message ||
+                "No encontramos tu invitación.";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Error al cargar la invitación:",
+            error
+        );
+
+        guestTicketsElement.textContent =
+            "";
+
+        rsvpResponse.textContent =
+            "No pudimos cargar tu invitación.";
+
+    }
+
+}
+
+
+/* =========================================================
+   EJECUTAR CARGA DE LA INVITACIÓN
+========================================================= */
+
+loadGuestData();
+
+
+/* =========================================================
+   OPCIÓN DE ASISTENCIA SELECCIONADA
 ========================================================= */
 
 let attendanceStatus = "";
@@ -985,8 +999,39 @@ confirmAttendance.addEventListener(
     "click",
     async () => {
 
+
         /* =============================================
-           COMPROBAR OPCIÓN
+           OBTENER NOMBRE
+        ============================================== */
+
+        const name =
+            guestNameElement
+                ? guestNameElement.value.trim()
+                : "";
+
+
+        /* =============================================
+           COMPROBAR NOMBRE
+        ============================================== */
+
+        if (name === "") {
+
+            rsvpResponse.textContent =
+                "Por favor, escribe tu nombre.";
+
+            if (guestNameElement) {
+
+                guestNameElement.focus();
+
+            }
+
+            return;
+
+        }
+
+
+        /* =============================================
+           COMPROBAR OPCIÓN DE ASISTENCIA
         ============================================== */
 
         if (attendanceStatus === "") {
@@ -1022,6 +1067,7 @@ confirmAttendance.addEventListener(
                 "guestMessage"
             );
 
+
         const message =
             messageElement
                 ? messageElement.value.trim()
@@ -1055,6 +1101,9 @@ confirmAttendance.addEventListener(
 
                             id:
                                 guestId,
+
+                            name:
+                                name,
 
                             attendance:
                                 attendanceStatus,
@@ -1113,7 +1162,10 @@ confirmAttendance.addEventListener(
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "Error al enviar confirmación:",
+                error
+            );
 
             rsvpResponse.textContent =
                 "No pudimos enviar tu confirmación. Inténtalo nuevamente.";

@@ -1295,7 +1295,6 @@
 
 
 
-
 <!-- =====================================================
      CONFIRMACIÓN DE ASISTENCIA
 ====================================================== -->
@@ -1332,19 +1331,43 @@
                 ¡Hola!
             </p>
 
-            <h3 id="guestName">
-                Juan Pérez
-            </h3>
+
+            <!-- =============================================
+                 NOMBRE DEL INVITADO
+            ============================================== -->
+
+            <div class="name-group">
+
+                <label
+                    for="guestName"
+                >
+                    ¿Quién está confirmando?
+                </label>
+
+                <input
+                    type="text"
+                    id="guestName"
+                    name="guestName"
+                    placeholder="Escribe tu nombre"
+                    autocomplete="name"
+                >
+
+            </div>
+
+
+            <!-- =============================================
+                 PASES
+            ============================================== -->
 
             <p class="rsvp-tickets-label">
-                Tu invitación incluye
+                Tu invitación tiene
             </p>
 
             <strong
                 id="guestTickets"
                 class="rsvp-tickets"
             >
-                3 pases
+                0 pases
             </strong>
 
 
@@ -1435,7 +1458,9 @@
 
     </div>
 
-</section> <!-- ================= final sección  confirmación ================= -->
+</section>
+
+<!-- ================= final sección confirmación ================= -->
 
 
 <!-- =========================================================
